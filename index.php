@@ -1,8 +1,10 @@
 <?php 
+	
+	require_once("config.php");
 
-echo "Olá mundo<br/>";
+	$sql = new sql();
 
+	$usuarios = $sql->select("SELECT * FROM tb_usuarios");
 
-echo "TESTE";
-
+	echo json_encode($usuarios);
  ?>
