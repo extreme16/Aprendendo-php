@@ -1,6 +1,8 @@
 <?php 
 
-echo "hello world";
+echo "Olá mundo";
 
-echo "testando sincronização";
+
+echo "TESTE";
+
  ?>
