@@ -59,7 +59,7 @@ class Usuarios {
 
 		$resultado = $sql->select("SELECT * FROM tb_usuarios where idusuario = :ID", array(":ID"=>$id
 	));
-		if($resultado[0])	{
+		if(count($resultado) > 0)	{
 
 			$row = $resultado[0];
 
@@ -69,7 +69,41 @@ class Usuarios {
 			$this->setDtcadastro(new DateTime($row['dtcadastro']));
 		}
 	}
+public static function getList(){
 
+	$sql = new sql();
+
+	return $sql->select("SELECT * FROM tb_usuarios;");
+
+}
+public static function search($login){
+
+	$sql = new sql();
+
+	return $sql->select("SELECT * FROM tb_usuarios Where deslogin like :SEARCH;", array(":SEARCH"=>"%".$login."%"
+
+));
+}
+
+public function login($login, $senha){
+
+	$sql = new sql();
+
+		$resultado = $sql->select("SELECT * FROM tb_usuarios where deslogin = :LOGIN and dessenha = :SENHA", array(":LOGIN"=>$login, ":SENHA"=>$senha
+		));
+		if(count($resultado) > 0)	{
+
+			$row = $resultado[0];
+
+			$this->setIdusuario($row['idusuario']);
+			$this->setDeslogin($row['deslogin']);
+			$this->setDessenha($row['dessenha']);
+			$this->setDtcadastro(new DateTime($row['dtcadastro']));
+		} else {
+
+			throw new exception("Login e/ou senha inválidos");
+		}
+}
 public function __toString(){
 
 	return json_encode(array(
