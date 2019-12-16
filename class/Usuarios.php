@@ -134,6 +134,20 @@ public function update($login, $senha){
 		':ID'=>$this->getIdusuario()
 	));
 }
+
+public function delete(){
+
+	$sql = new sql();
+
+	$sql->query("DELETE FROM tb_usuarios where idusuario = :ID",
+	 array(':ID'=>$this->getIdusuario()
+	));
+
+	$this->setIdusuario(0);
+	$this->setDeslogin("");
+	$this->setDessenha("");
+	$this->setDtcadastro(new DateTime());
+}
 public function __construct($login = "", $senha = ""){
 
 	$this->setDeslogin($login);

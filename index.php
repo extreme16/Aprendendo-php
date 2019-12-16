@@ -27,11 +27,18 @@
 
 	echo $aluno;*/
 
-	$update = new Usuarios();
+	/*$update = new Usuarios(); //update de usuario
 
 	$update->loadByid(4);
 
 	$update->update("update", "wesds");
 
-	echo $update;
+	echo $update;*/
+
+	$delete = new Usuarios();
+
+	$delete->loadByid(6);
+
+	$delete->delete();
+	echo $delete;
  ?>
